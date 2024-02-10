@@ -7,47 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css" />
-    <style>
-    body {
-        font-family: 'Open Sans', sans-serif;
-    }
-    .divider {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        color: black;
-    }
-    .divider::before,
-    .divider::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid black;
-    }
-    .divider:not(:empty)::before {
-        margin-right: .25em;
-    }
-    .divider:not(:empty)::after {
-        margin-left: .25em;
-    }
-    .fade-out {
-        opacity: 0;
-        transition: opacity .5s ease;
-    }
-    .fade-in {
-        opacity: 1;
-        transition: opacity .5s ease;
-    }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="flex items-center justify-center h-screen" style="background: radial-gradient(#f492f0, #a18dce);">
     <div class="text-center">
+        <div class="logo text-center"><span class="text-6xl font-fantasy">Better Days</span></div>
         <h1 class="text-3xl font-semibold mb-6 text-center">What's on your mind?</h1>
         <form class="mb-4">
             <div class="flex items-center">
-                <input type="text" placeholder="Enter text..." class="p-2 w-full rounded-l-md focus:outline-none" style="min-height: 3rem; border-color: #FFC8DD;">
+                <input type="text" placeholder="Type here..." class="p-2 w-full rounded-l-md focus:outline-none" style="min-height: 3rem; border-color: #FFC8DD;" required>
                 <button class="text-white px-4 py-2 rounded-r-md focus:outline-none" style="min-height: 3rem; background-color: #CDB4DB;
-                hover:background-color: #FFC8DD;">Continue</button>
+                hover:background-color #FFC8DD">Continue</button>
             </div>
         </form>
 
@@ -55,8 +25,8 @@
         <form class="mb-4">
             <div class="flex items-center">
                 <div class="relative flex-grow">
-                    <select class="p-2 w-full rounded-l-md appearance-none focus:outline-none" style="min-height: 3rem; padding-right: 2.5rem; border-color: #FFC8DD;">
-                        <option>Select an option</option>
+                    <select id="optionSelect" class="p-2 w-full rounded-l-md appearance-none focus:outline-none" style="min-height: 3rem; padding-right: 2.5rem; border-color: #FFC8DD;" required>
+                        <option selected>Select an option</option>
                         <option value="1">I'm feeling down lately.</option>
                         <option value="2">I have issues about aspects of my life.</option>
                         <option value="3">I'm looking for motivation.</option>
@@ -66,68 +36,11 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
-                <button class="text-white px-4 py-2 rounded-r-md focus:outline-none" style="min-height: 3rem; background-color: #CDB4DB;
-                hover:background-color: #FFC8DD;">Continue</button>
+                <button id="submitButton" class="hidden text-white px-4 py-2 rounded-r-md focus:outline-none" style="min-height: 3rem; background-color: #CDB4DB;
+                hover:background-color #FFC8DD">Continue</button>
             </div>
         </form>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const mainContainer = document.querySelector('div.text-center');
-        const forms = document.querySelectorAll('form');
-
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent the form from submitting
-
-            // Fade out the container
-            mainContainer.classList.add('fade-out');
-
-            // Wait for the fade out animation to complete
-            setTimeout(() => {
-                const h1 = mainContainer.querySelector('h1');
-                const inputFields = mainContainer.querySelectorAll('input, select');
-
-                // Check the content of the h1 to determine the current page
-                if (h1.textContent.includes("What's your plan for the near future?")) {
-                    // If on the second page, transition to the third page
-                    mainContainer.innerHTML = `
-                        <h1 class="text-3xl font-semibold mb-6 text-center fade-in">Is there anything that's specifically bugging you?</h1>
-                        <form class="mb-6 fade-in" style="animation-delay: 1s;">
-                            <input class="p-2 w-full rounded mb-2 focus:outline-none" type="text" placeholder="Something that makes you unhappy?" style="border-color: #FFC8DD; min-height: 3rem;">
-                            <input class="p-2 w-full rounded mb-2 focus:outline-none" type="text" placeholder="Someone that you feel negatively about?" style="border-color: #FFC8DD; min-height: 3rem;">
-                            <input class="p-2 w-full rounded focus:outline-none" type="text" placeholder="Somewhere that you dislike?" style="border-color: #FFC8DD; min-height: 3rem;">
-                            <button class="text-white px-4 py-2 rounded focus:outline-none" style="min-height: 3rem; background-color: #CDB4DB; hover:background-color: #FFC8DD;">Submit</button>
-                        </form>
-                    `;
-                    mainContainer.classList.remove('fade-out');
-                    mainContainer.classList.add('fade-in');
-                } else {
-                    // If on the first page, transition to the second page
-                    h1.textContent = "What's your plan for the near future?";
-                    inputFields.forEach(input => {
-                        if(input.tagName.toLowerCase() === 'input') {
-                            input.placeholder = "Type here...";
-                        } else if(input.tagName.toLowerCase() === 'select') {
-                            input.innerHTML = `
-                                <option>I want to improve myself mentally.</option>
-                                <option>I want to make a much-needed decision.</option>
-                                <option>I want to escape.</option>
-                                <option>I don't know?</option>
-                            `;
-                        }
-                    });
-                mainContainer.classList.remove('fade-out');
-                mainContainer.classList.add('fade-in');
-                }
-
-                // Fade in the container with the new prompt
-                mainContainer.classList.remove('fade-out');
-                mainContainer.classList.add('fade-in');
-            }, 1000); // Corresponds with the transition duration
-            });
-        });
-    });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

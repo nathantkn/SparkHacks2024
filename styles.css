@@ -1,0 +1,36 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+.logo {
+    height: 150px;
+}
+.logo span {
+    font-family: Fantasy;
+    color: darkslateblue;
+}
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: black;
+}
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid black;
+}
+.divider:not(:empty)::before {
+    margin-right: .25em;
+}
+.divider:not(:empty)::after {
+    margin-left: .25em;
+}
+.fade-out {
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+.fade-in {
+    opacity: 1;
+    transition: opacity .5s ease;
+}
