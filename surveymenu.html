@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Days</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/webp" href="betterdays.webp"/>
+</head>
+<body class="flex items-center justify-center h-screen" style="background: radial-gradient(#f492f0, #a18dce);">
+    <div class="text-center">
+        <h1 class="logo text-center text-6xl font-fantasy" id="betterdays">
+            <span>Better</span>
+            <span> Days</span>
+        </h1>
+        <h1 class="text-3xl font-semibold mb-6 text-center" id="question"><span>What's stressing you out?</span></h1>
+        <form id="loginForm">
+            <div class="flex items-center">
+                <input type="text" placeholder="Share your thoughts..." class="p-2 w-full rounded-l-md focus:outline-none" style="min-height: 3rem; border-color: #FFC8DD;">
+                <button id="submitButton" class="text-white px-4 py-2 rounded-r-md focus:outline-none" style="min-height: 3rem; background-color: #CDB4DB;
+                hover:background-color #FFC8DD">Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
