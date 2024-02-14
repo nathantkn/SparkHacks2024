@@ -71,5 +71,5 @@ span:nth-child(2) {
 }
 .fade-in {
     opacity: 1;
-    transition: opacity .1s ease-in;
+    transition: opacity .5s ease-in;
 }
